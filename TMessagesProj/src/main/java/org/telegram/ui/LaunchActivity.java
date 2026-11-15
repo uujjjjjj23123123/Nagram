@@ -484,9 +484,18 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         flagSecureReason.attach();
 
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            try {
+                getSplashScreen().setOnExitAnimationListener(splashScreenView -> {
+                    try {
+                        splashScreenView.remove();
+                    } catch (Throwable ignored) {}
+                });
+            } catch (Throwable ignored) {}
+        }
         // Set initial status bar color immediately to prevent flash
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(0xFF426482); // Use theme's colorPrimaryDark
+            getWindow().setStatusBarColor(0xFF050B14); // Aether Stark Void Black
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 getWindow().getDecorView().setSystemUiVisibility(
                     getWindow().getDecorView().getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -637,7 +646,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         LiteMode.addOnPowerSaverAppliedListener(onPowerSaverCallback = this::onPowerSaver);
         if (actionBarLayout.getFragmentStack().isEmpty() && (layersActionBarLayout == null || layersActionBarLayout.getFragmentStack().isEmpty())) {
             if (!UserConfig.getInstance(currentAccount).isClientActivated()) {
-                actionBarLayout.addFragmentToStack(getClientNotActivatedFragment());
+                try {
+                    actionBarLayout.addFragmentToStack(getClientNotActivatedFragment());
+                } catch (Throwable t) {
+                    FileLog.e(t);
+                    try {
+                        actionBarLayout.addFragmentToStack(new LoginActivity());
+                    } catch (Throwable ignored) {}
+                }
             } else {
                 MainTabsActivity mainTabsActivity = new MainTabsActivity();
                 actionBarLayout.addFragmentToStack(mainTabsActivity);
@@ -1149,10 +1165,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     private BaseFragment getClientNotActivatedFragment() {
-        if (LoginActivity.loadCurrentState(false, currentAccount).getInt("currentViewNum", 0) != 0) {
+        try {
+            if (LoginActivity.loadCurrentState(false, currentAccount).getInt("currentViewNum", 0) != 0) {
+                return new LoginActivity();
+            }
+            return new IntroActivity();
+        } catch (Throwable e) {
+            FileLog.e(e);
             return new LoginActivity();
         }
-        return new IntroActivity();
     }
 
     public FireworksOverlay getFireworksOverlay() {

@@ -153,10 +153,18 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
 
     @Override
     public View createView(Context context) {
-        logoDrawable = context.getResources().getDrawable(R.drawable.nagram_logo).mutate();
-        logoDrawable.setBounds(0, dp(4f), dp(150), dp(38));
+        try {
+            logoDrawable = context.getResources().getDrawable(R.drawable.nagram_logo).mutate();
+            logoDrawable.setBounds(0, dp(4f), dp(150), dp(38));
+        } catch (Throwable t) {
+            logoDrawable = null;
+        }
         SpannableStringBuilder ssb = new SpannableStringBuilder(LocaleController.getString(R.string.NekoX));
-        ssb.setSpan(new ImageSpan(logoDrawable), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (logoDrawable != null) {
+            try {
+                ssb.setSpan(new ImageSpan(logoDrawable), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } catch (Throwable ignored) {}
+        }
         titles[0] = ssb;
 
 
@@ -697,7 +705,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             int[] configsCount = new int[1];
             EGLConfig[] configs = new EGLConfig[1];
             int[] configSpec;
-            if (EmuDetector.with(getParentActivity()).detect()) {
+            boolean isEmu = false;
+            try {
+                Activity parent = getParentActivity();
+                if (parent != null) {
+                    isEmu = EmuDetector.with(parent).detect();
+                }
+            } catch (Throwable ignored) {}
+            if (isEmu) {
                 configSpec = new int[] {
                         EGL10.EGL_RED_SIZE, 8,
                         EGL10.EGL_GREEN_SIZE, 8,
@@ -904,7 +919,16 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
 
         private void loadTexture(int resId, int index, int tintColor, boolean rebind) {
-            Drawable drawable = getParentActivity().getResources().getDrawable(resId);
+            Activity parent = getParentActivity();
+            if (parent == null) {
+                return;
+            }
+            Drawable drawable;
+            try {
+                drawable = parent.getResources().getDrawable(resId);
+            } catch (Throwable t) {
+                return;
+            }
             if (drawable instanceof BitmapDrawable) {
                 if (rebind) {
                     GLES20.glDeleteTextures(1, textures, index);
@@ -962,7 +986,9 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
 
     private void updateColors(boolean fromTheme) {
         startMessagingButtonBackground.setColors(new int[]{getThemedColor(Theme.key_featuredStickers_addButton), getThemedColor(Theme.key_featuredStickers_addButton2)});
-        logoDrawable.clearColorFilter();
+        if (logoDrawable != null) {
+            logoDrawable.clearColorFilter();
+        }
         fragmentView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         switchLanguageTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
         startMessagingButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));

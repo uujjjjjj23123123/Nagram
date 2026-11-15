@@ -100,9 +100,31 @@ public class ApplicationLoader extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        if (applicationContext == null) {
+            applicationContext = base;
+        }
+        final Thread.UncaughtExceptionHandler defaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.currentThread().setUncaughtExceptionHandler((thread, error) -> {
-            Log.e("nagram", "from " + thread.toString(), error);
-            AnalyticsHelper.captureException(error);
+            Log.e("AETHER", "FATAL CRASH on main thread: " + thread.toString(), error);
+            try {
+                java.io.File crashFile = new java.io.File(base.getFilesDir(), "aether_crash.log");
+                java.io.FileOutputStream fos = new java.io.FileOutputStream(crashFile, true);
+                java.io.PrintStream ps = new java.io.PrintStream(fos);
+                ps.println("=== AETHER CRASH " + new java.util.Date() + " ===");
+                error.printStackTrace(ps);
+                ps.close();
+            } catch (Throwable ignored) {
+            }
+            try {
+                AnalyticsHelper.captureException(error);
+            } catch (Throwable ignored) {
+            }
+            if (defaultHandler != null) {
+                defaultHandler.uncaughtException(thread, error);
+            } else {
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(10);
+            }
         });
     }
 
@@ -353,30 +375,47 @@ public class ApplicationLoader extends Application {
             applicationContext = getApplicationContext();
         }
 
-        Utilities.stageQueue.postRunnable(() -> SignturesKt.checkMT(this));
+        try {
+            Utilities.stageQueue.postRunnable(() -> SignturesKt.checkMT(this));
+        } catch (Throwable ignored) {
+        }
 
-        NativeLoader.initNativeLibs(ApplicationLoader.applicationContext);
+        try {
+            NativeLoader.initNativeLibs(ApplicationLoader.applicationContext);
+        } catch (Throwable e) {
+            Log.e("AETHER", "Failed to init native libs: " + e.getMessage());
+        }
 
         try {
             ConnectionsManager.native_setJava(false);
-        } catch (UnsatisfiedLinkError error) {
-            throw new RuntimeException("can't load native libraries " +  Build.CPU_ABI + " lookup folder " + NativeLoader.getAbiFolder());
+        } catch (Throwable error) {
+            Log.e("AETHER", "native_setJava error: " + error.getMessage());
         }
 
-        AnalyticsHelper.start(this);
+        try {
+            AnalyticsHelper.start(this);
+        } catch (Throwable t) {
+            Log.e("AETHER", "AnalyticsHelper error: " + t.getMessage());
+        }
 
-        new ForegroundDetector(this) {
-            @Override
-            public void onActivityStarted(Activity activity) {
-                boolean wasInBackground = isBackground();
-                super.onActivityStarted(activity);
-                if (wasInBackground) {
-                    ensureCurrentNetworkGet(true);
+        try {
+            new ForegroundDetector(this) {
+                @Override
+                public void onActivityStarted(Activity activity) {
+                    boolean wasInBackground = isBackground();
+                    super.onActivityStarted(activity);
+                    if (wasInBackground) {
+                        ensureCurrentNetworkGet(true);
+                    }
                 }
-            }
-        };
+            };
+        } catch (Throwable t) {
+            Log.e("AETHER", "ForegroundDetector error: " + t.getMessage());
+        }
         if (BuildConfig.DEBUG) {
-            new ANRDetector(FileLog::dumpANR);
+            try {
+                new ANRDetector(FileLog::dumpANR);
+            } catch (Throwable ignored) {}
         }
 
         if (BuildVars.LOGS_ENABLED) {
@@ -385,8 +424,16 @@ public class ApplicationLoader extends Application {
 
         applicationHandler = new Handler(applicationContext.getMainLooper());
 
-        LauncherIconController.tryFixLauncherIconIfNeeded();
-        ProxyRotationController.init();
+        try {
+            LauncherIconController.tryFixLauncherIconIfNeeded();
+        } catch (Throwable t) {
+            Log.e("AETHER", "LauncherIconController error: " + t.getMessage());
+        }
+        try {
+            ProxyRotationController.init();
+        } catch (Throwable t) {
+            Log.e("AETHER", "ProxyRotationController error: " + t.getMessage());
+        }
 
         //if (BuildConfig.DEBUG_PRIVATE_VERSION) {
         //    Choreographer60FpsContent.getInstance().addFrameCallback(debugEverySecondChecks, 1);
