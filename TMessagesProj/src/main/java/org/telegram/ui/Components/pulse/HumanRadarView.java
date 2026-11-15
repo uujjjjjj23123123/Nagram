@@ -251,6 +251,14 @@ public class HumanRadarView extends View implements PulseEngine.PulseUpdateListe
         lastFrameTime = now;
 
         if (!isDragging) {
+            if (PulseNativeBridge.isAvailable()) {
+                float[] step = PulseNativeBridge.nativeSpringStep(scrollX, velocityX, targetScrollX, dt, 0.25f, 0.85f);
+                if (step != null && step.length >= 2) {
+                    scrollX = step[0];
+                    velocityX = step[1];
+                    return;
+                }
+            }
             float displacement = scrollX - targetScrollX;
             float force = -SPRING_K * displacement - SPRING_DAMPING * velocityX;
             velocityX += force * dt;

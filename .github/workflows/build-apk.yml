@@ -33,6 +33,28 @@ jobs:
           echo "y" | sudo $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;27.2.12479018"
 
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android,armv7-linux-androideabi,x86_64-linux-android
+
+      - name: Cache cargo-ndk
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/cargo-ndk
+          key: ${{ runner.os }}-cargo-ndk
+
+      - name: Install cargo-ndk
+        run: which cargo-ndk || cargo install cargo-ndk
+
+      - name: Build Native Rust Core (libaether_core.so)
+        run: |
+          cd aether-core
+          mkdir -p ../TMessagesProj/src/main/jniLibs
+          cargo ndk -t arm64-v8a -t armeabi-v7a -t x86_64 -o ../TMessagesProj/src/main/jniLibs build --release
+          cd ..
+          ls -la TMessagesProj/src/main/jniLibs/
+
       - name: Ensure gradlew is executable
         run: chmod +x gradlew || true
 

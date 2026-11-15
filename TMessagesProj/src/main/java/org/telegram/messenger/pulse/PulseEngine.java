@@ -81,6 +81,9 @@ public class PulseEngine {
      * Evaluates if a chat event belongs to a real living human.
      */
     public boolean isLivingHuman(boolean isPrivate, boolean isBot, boolean isScam, boolean isFake, boolean isChannel, boolean hasDirectMention) {
+        if (PulseNativeBridge.isAvailable()) {
+            return PulseNativeBridge.nativeIsLivingHuman(isPrivate, isBot, isScam, isFake, isChannel, hasDirectMention);
+        }
         // Broadcast channels and automated bots belong to Level 2 (Digest)
         if (isChannel || isBot || isScam || isFake) {
             return false;
@@ -95,6 +98,13 @@ public class PulseEngine {
     public void onMessageReceived(long dialogId, long userId, String displayName, String messageText,
                                   boolean isVoiceOrVideo, boolean hasMention, int currentUnread) {
         long now = System.currentTimeMillis();
+
+        if (PulseNativeBridge.isAvailable()) {
+            PulseNativeBridge.nativeProcessMessage(
+                    dialogId, userId, displayName != null ? displayName : "",
+                    messageText != null ? messageText : "", now, isVoiceOrVideo, hasMention, currentUnread
+            );
+        }
 
         PulseDialogItem item = activeHumans.get(dialogId);
         if (item == null) {
@@ -155,6 +165,9 @@ public class PulseEngine {
      * When user responds to the chat, urgency resets immediately to zero (inbox answered).
      */
     public void onChatAnswered(long dialogId, long userId) {
+        if (PulseNativeBridge.isAvailable()) {
+            PulseNativeBridge.nativeChatAnswered(dialogId);
+        }
         activeHumans.remove(dialogId);
         incrementAffinityCounter(userId);
         notifyListeners();
