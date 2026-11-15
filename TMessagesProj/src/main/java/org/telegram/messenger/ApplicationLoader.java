@@ -102,6 +102,7 @@ public class ApplicationLoader extends Application {
         super.attachBaseContext(base);
         try {
             applicationContext = getApplicationContext();
+            org.telegram.messenger.pulse.PulseEngine.getInstance().init(applicationContext);
         } catch (Throwable ignore) {
         }
         Thread.currentThread().setUncaughtExceptionHandler((thread, error) -> {
@@ -333,6 +334,7 @@ public class ApplicationLoader extends Application {
         applicationLoaderInstance = this;
         try {
             applicationContext = getApplicationContext();
+            org.telegram.messenger.pulse.PulseEngine.getInstance().init(applicationContext);
         } catch (Throwable ignore) {
         }
 

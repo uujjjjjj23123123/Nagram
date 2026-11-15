@@ -20160,6 +20160,32 @@ public class MessagesController extends BaseController implements NotificationCe
         if (messagesArr != null) {
             getStatsController().incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), StatsController.TYPE_MESSAGES, messagesArr.size());
             getMessagesStorage().putMessages(messagesArr, true, true, false, getDownloadController().getAutodownloadMask(), 0, 0);
+
+            try {
+                for (int i = 0; i < messagesArr.size(); i++) {
+                    TLRPC.Message msg = messagesArr.get(i);
+                    if (msg != null && !msg.out) {
+                        long dId = msg.dialog_id;
+                        long uId = msg.from_id instanceof TLRPC.TL_peerUser ? msg.from_id.user_id : (dId > 0 ? dId : 0);
+                        TLRPC.User sUser = getUser(uId);
+                        boolean isPriv = (dId > 0);
+                        boolean isB = sUser != null && sUser.bot;
+                        boolean isS = sUser != null && sUser.scam;
+                        boolean isF = sUser != null && sUser.fake;
+                        boolean isCh = !isPriv && ChatObject.isChannel(getChat(-dId));
+                        boolean isMention = msg.mentioned;
+                        if (org.telegram.messenger.pulse.PulseEngine.getInstance().isLivingHuman(isPriv, isB, isS, isF, isCh, isMention)) {
+                            String sName = UserObject.getUserName(sUser);
+                            boolean isAud = msg.media instanceof TLRPC.TL_messageMediaVoice || msg.media instanceof TLRPC.TL_messageMediaRoundVideo;
+                            org.telegram.messenger.pulse.PulseEngine.getInstance().onMessageReceived(dId, uId, sName, msg.message, isAud, isMention, 1);
+                        }
+                    } else if (msg != null && msg.out) {
+                        long dId = msg.dialog_id;
+                        long uId = (dId > 0 ? dId : 0);
+                        org.telegram.messenger.pulse.PulseEngine.getInstance().onChatAnswered(dId, uId);
+                    }
+                }
+            } catch (Throwable ignored) {}
         }
 
         if (ephemeralUpdates != null) {

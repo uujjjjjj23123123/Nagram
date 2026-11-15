@@ -9212,6 +9212,9 @@ public class Theme {
         } else {
             color = currentColors.valueAt(index);
         }
+        if (key == key_chats_unreadCounter) {
+            return org.telegram.messenger.pulse.AetherColors.EMBER_URGENT_NIGHT;
+        }
         if (key_windowBackgroundWhite == key || key_windowBackgroundGray == key || key_actionBarDefault == key || key_actionBarDefaultArchived == key) {
             color |= 0xff000000;
         }

@@ -5716,6 +5716,21 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateFilterTabs(true, false);
         rightSlidingDialogContainer.setOpenProgress(0f);
         contentView.addView(dialogStoriesCell, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, DialogStoriesCell.HEIGHT_IN_DP));
+
+        try {
+            org.telegram.ui.Components.pulse.HumanRadarView humanRadarView = new org.telegram.ui.Components.pulse.HumanRadarView(context);
+            humanRadarView.setOnHumanSelectedListener(dialogId -> {
+                android.os.Bundle args = new android.os.Bundle();
+                if (dialogId > 0) {
+                    args.putLong("user_id", dialogId);
+                } else {
+                    args.putLong("chat_id", -dialogId);
+                }
+                presentFragment(new ChatActivity(args));
+            });
+            contentView.addView(humanRadarView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 96, Gravity.TOP, 0, 48, 0, 0));
+        } catch (Throwable ignored) {}
+
         contentView.addView(rightSlidingDialogContainer, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
 
         dialogsActivityStatusLayout = new DialogsActivityStatusLayout(context);
