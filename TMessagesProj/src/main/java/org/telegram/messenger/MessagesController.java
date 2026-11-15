@@ -20176,7 +20176,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         boolean isMention = msg.mentioned;
                         if (org.telegram.messenger.pulse.PulseEngine.getInstance().isLivingHuman(isPriv, isB, isS, isF, isCh, isMention)) {
                             String sName = UserObject.getUserName(sUser);
-                            boolean isAud = msg.media instanceof TLRPC.TL_messageMediaVoice || msg.media instanceof TLRPC.TL_messageMediaRoundVideo;
+                            boolean isAud = MessageObject.isVoiceMessage(msg) || MessageObject.isRoundVideoMessage(msg);
                             org.telegram.messenger.pulse.PulseEngine.getInstance().onMessageReceived(dId, uId, sName, msg.message, isAud, isMention, 1);
                         }
                     } else if (msg != null && msg.out) {

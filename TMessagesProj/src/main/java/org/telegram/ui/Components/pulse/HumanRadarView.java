@@ -15,6 +15,7 @@ import android.view.View;
 import org.telegram.messenger.pulse.AetherColors;
 import org.telegram.messenger.pulse.PulseDialogItem;
 import org.telegram.messenger.pulse.PulseEngine;
+import org.telegram.messenger.pulse.PulseNativeBridge;
 
 import java.util.ArrayList;
 import java.util.List;
