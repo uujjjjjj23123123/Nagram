@@ -63,7 +63,8 @@ jobs:
           APP_ID: ${{ secrets.TELEGRAM_APP_ID }}
           APP_HASH: ${{ secrets.TELEGRAM_APP_HASH }}
         run: |
-          keytool -genkey -v -keystore TMessagesProj/release.keystore -alias aether -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=AetherTG, OU=Aether, O=Aether, L=Global, S=Global, C=US"
+          rm -f TMessagesProj/release.keystore
+          keytool -genkeypair -v -keystore TMessagesProj/release.keystore -alias aether -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=AetherTG, OU=Aether, O=Aether, L=Global, S=Global, C=US"
           echo "telegram.app.id=${APP_ID}" > local.properties
           echo "telegram.app.hash=${APP_HASH}" >> local.properties
           echo "KEYSTORE_PASS=android" >> local.properties
