@@ -5729,7 +5729,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                     presentFragment(new ChatActivity(args));
                 });
-                contentView.addView(humanRadarView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 96, Gravity.TOP, 0, 48, 0, 0));
+                contentView.addView(humanRadarView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 108, Gravity.TOP, 0, 48, 0, 0));
             }
         } catch (Throwable ignored) {}
 

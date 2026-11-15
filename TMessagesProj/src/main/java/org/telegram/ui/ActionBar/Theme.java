@@ -9213,7 +9213,22 @@ public class Theme {
             color = currentColors.valueAt(index);
         }
         if (key == key_chats_unreadCounter) {
-            return org.telegram.messenger.pulse.AetherColors.EMBER_URGENT_NIGHT;
+            return org.telegram.messenger.pulse.AetherColors.REPULSOR_GOLD_CORE;
+        }
+        if (key == key_chats_actionBackground) {
+            return org.telegram.messenger.pulse.AetherColors.ARC_CYAN_CORE;
+        }
+        if (key == key_chats_actionIcon) {
+            return org.telegram.messenger.pulse.AetherColors.STARK_VOID_BLACK;
+        }
+        if (key == key_featuredStickers_addButton) {
+            return org.telegram.messenger.pulse.AetherColors.ARC_CYAN_CORE;
+        }
+        if (key == key_featuredStickers_addButton2) {
+            return org.telegram.messenger.pulse.AetherColors.ARC_BLUE_DEPTH;
+        }
+        if (key == key_featuredStickers_buttonText) {
+            return org.telegram.messenger.pulse.AetherColors.STARK_VOID_BLACK;
         }
         if (key_windowBackgroundWhite == key || key_windowBackgroundGray == key || key_actionBarDefault == key || key_actionBarDefaultArchived == key) {
             color |= 0xff000000;

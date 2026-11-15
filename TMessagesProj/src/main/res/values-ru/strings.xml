@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">AetherTG</string>
-    <string name="AppNameBeta">AetherTG Бета</string>
+    <string name="AppName">Aether // STARK OS</string>
+    <string name="AppNameBeta">Aether // STARK OS [LAB]</string>
     <string name="LanguageName">Русский</string>
     <string name="English">Английский</string>
     <string name="LanguageNameInEnglish">Russian</string>
     <string name="LanguageCode">ru</string>
-    <string name="ContinueOnThisLanguage">Продолжить на русском</string>
+    <string name="ContinueOnThisLanguage">ИНИЦИАЛИЗАЦИЯ НА РУССКОМ</string>
     <!--signin view-->
     <string name="YourPhone">Ваш телефон</string>
     <string name="StartText">Проверьте код страны и введите свой номер телефона.</string>
@@ -209,19 +209,19 @@
     <string name="CheckYourNewEmailSubtitle">Введите код, который пришёл на указанный Вами адрес %1$s.</string>
     <string name="LoginOrSingInWithGoogle">или</string>
     <!--Intro view-->
-    <string name="Page1Title">Telegram</string>
-    <string name="Page2Title">Быстрый</string>
-    <string name="Page3Title">Бесплатный</string>
-    <string name="Page4Title">Безопасный</string>
-    <string name="Page5Title">Мощный</string>
-    <string name="Page6Title">Облачный</string>
-    <string name="Page1Message">Самый **быстрый** мессенджер в мире.\n**Бесплатный** и **безопасный**.</string>
-    <string name="Page2Message">**Telegram** доставляет сообщения быстрее\nлюбого другого приложения.</string>
-    <string name="Page3Message">**Telegram** предоставляет бесплатное безлимитное облачное хранилище для чатов и медиа.\n</string>
-    <string name="Page4Message">**Telegram** защищает Вашу переписку от злоумышленников.</string>
-    <string name="Page5Message">**Telegram** не ограничивает размер\n Ваших медиафайлов и чатов.</string>
-    <string name="Page6Message">В **Telegram** можно переписываться с любого количества устройств.</string>
-    <string name="StartMessaging">Начать общение</string>
+    <string name="Page1Title">STARK INDUSTRIES</string>
+    <string name="Page2Title">ARC PULSE ENGINE</string>
+    <string name="Page3Title">КВАНТОВОЕ ОБЛАКО</string>
+    <string name="Page4Title">БРОНЯ MARK LXXXV</string>
+    <string name="Page5Title">РЕАКТОРНАЯ СКОРОСТЬ</string>
+    <string name="Page6Title">ТАКТИЧЕСКИЙ ХАБ</string>
+    <string name="Page1Message">Тактический квантовый мессенджер нового поколения.\nРазработан лабораторией **Stark Industries**.</string>
+    <string name="Page2Message">Нативное Rust-ядро **Arc Pulse** мгновенно выявляет биосигналы людей и фильтрует инфошум каналов.</string>
+    <string name="Page3Message">Защищенное распределенное облако **Stark Cloud** для файлов и телеметрии со всех терминалов.</string>
+    <string name="Page4Message">Криптографическая защита уровня **Mark 85** и протокол квантового шифрования.</string>
+    <string name="Page5Message">Нулевая задержка передачи данных и реакторная скорость обработки медиа.</string>
+    <string name="Page6Message">Единый тактический центр управления для полевых операций и командного штаба.</string>
+    <string name="StartMessaging">INITIALIZE PROTOCOL // ЗАПУСТИТЬ СИСТЕМУ</string>
     <!--date formatters-->
     <string name="formatterBoostExpired">dd MMM yyyy</string>
     <string name="formatterGiveawayCard">dd MMM yyyy</string>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">AetherTG</string>
-    <string name="AppNameBeta">AetherTG Beta</string>
+    <string name="AppName">Aether // STARK OS</string>
+    <string name="AppNameBeta">Aether // STARK OS [LAB]</string>
     <string name="LanguageName">English</string>
     <string name="English">English</string>
     <string name="LanguageNameInEnglish">English</string>
     <string name="LanguageCode">en</string>
-    <string name="ContinueOnThisLanguage">Continue in English</string>
+    <string name="ContinueOnThisLanguage">INITIALIZE IN ENGLISH</string>
     <!--signin view-->
     <string name="YourPhone">Your Phone</string>
     <string name="StartText">Please confirm your country code and enter your phone number.</string>
@@ -4208,19 +4208,19 @@
     <string name="ViewMessageStatistic">Message Statistic</string>
     <string name="ViewMessage">Open Message</string>
     <!--Intro view-->
-    <string name="Page1Title">Telegram</string>
-    <string name="Page2Title">Fast</string>
-    <string name="Page3Title">Free</string>
-    <string name="Page4Title">Secure</string>
-    <string name="Page5Title">Powerful</string>
-    <string name="Page6Title">Cloud-Based</string>
-    <string name="Page1Message">The world\'s **fastest** messaging app.\nIt is **free** and **secure**.</string>
-    <string name="Page2Message">**Telegram** delivers messages faster than\nany other application.</string>
-    <string name="Page3Message">**Telegram** provides free unlimited cloud storage for chats and media.</string>
-    <string name="Page4Message">**Telegram** keeps your messages safe\nfrom hacker attacks.</string>
-    <string name="Page5Message">**Telegram** has no limits on\nthe size of your media and chats.</string>
-    <string name="Page6Message">**Telegram** lets you access your messages\nfrom multiple devices.</string>
-    <string name="StartMessaging">Start Messaging</string>
+    <string name="Page1Title">STARK INDUSTRIES</string>
+    <string name="Page2Title">ARC PULSE ENGINE</string>
+    <string name="Page3Title">QUANTUM CLOUD</string>
+    <string name="Page4Title">MARK LXXXV ARMOR</string>
+    <string name="Page5Title">REPULSOR SPEED</string>
+    <string name="Page6Title">TACTICAL HUB</string>
+    <string name="Page1Message">Next-generation tactical quantum messenger.\nEngineered by **Stark Industries**.</string>
+    <string name="Page2Message">Native Rust **Arc Pulse** detects human vital signs and filters out automated noise.</string>
+    <string name="Page3Message">Encrypted decentralized **Stark Cloud** for schematics and telemetry across suits.</string>
+    <string name="Page4Message">Military-grade cryptographic defense powered by **Mark 85** quantum protocols.</string>
+    <string name="Page5Message">Zero-latency repulsor bandwidth for instantaneous tactical media transfer.</string>
+    <string name="Page6Message">Unified battlefield telemetry and tactical comms on all your terminals.</string>
+    <string name="StartMessaging">INITIALIZE PROTOCOL // ENTER SYSTEM</string>
     <!-- VoIP -->
     <string name="AccountSettings">Account Settings</string>
     <string name="VoipUseLessData">Use less data for calls</string>
