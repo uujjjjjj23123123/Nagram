@@ -100,11 +100,6 @@ public class ApplicationLoader extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        try {
-            applicationContext = getApplicationContext();
-            org.telegram.messenger.pulse.PulseEngine.getInstance().init(applicationContext);
-        } catch (Throwable ignore) {
-        }
         Thread.currentThread().setUncaughtExceptionHandler((thread, error) -> {
             Log.e("nagram", "from " + thread.toString(), error);
             AnalyticsHelper.captureException(error);
@@ -332,13 +327,14 @@ public class ApplicationLoader extends Application {
     @Override
     public void onCreate() {
         applicationLoaderInstance = this;
-        try {
+        super.onCreate();
+        if (applicationContext == null) {
             applicationContext = getApplicationContext();
+        }
+        try {
             org.telegram.messenger.pulse.PulseEngine.getInstance().init(applicationContext);
         } catch (Throwable ignore) {
         }
-
-        super.onCreate();
 
         // AndroidUtilities must be initialized before FileLog
         final String helloWorld = AndroidUtilities.getHelloWorld();

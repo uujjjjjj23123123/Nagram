@@ -67,6 +67,7 @@ public class HumanRadarView extends View implements PulseEngine.PulseUpdateListe
     }
 
     private void init() {
+        setVisibility(View.GONE);
         avatarBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         avatarBgPaint.setColor(AetherColors.NIGHT_SURFACE_LIGHT);
 
@@ -172,6 +173,10 @@ public class HumanRadarView extends View implements PulseEngine.PulseUpdateListe
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        if (getVisibility() == View.GONE || items.isEmpty()) {
+            setMeasuredDimension(0, 0);
+            return;
+        }
         // Compact 92dp height for horizontal radar bar
         int height = (int) dp(96);
         super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
@@ -180,7 +185,7 @@ public class HumanRadarView extends View implements PulseEngine.PulseUpdateListe
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (items.isEmpty()) return;
+        if (getVisibility() == View.GONE || items.isEmpty()) return;
 
         updateSpringPhysics();
 

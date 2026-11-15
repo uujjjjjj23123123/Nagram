@@ -65,7 +65,9 @@ jobs:
         run: |
           rm -f TMessagesProj/release.keystore
           keytool -genkeypair -v -keystore TMessagesProj/release.keystore -alias aether -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=AetherTG, OU=Aether, O=Aether, L=Global, S=Global, C=US"
-          echo "telegram.app.id=${APP_ID}" > local.properties
+          echo "TELEGRAM_APP_ID=${APP_ID}" > local.properties
+          echo "TELEGRAM_APP_HASH=${APP_HASH}" >> local.properties
+          echo "telegram.app.id=${APP_ID}" >> local.properties
           echo "telegram.app.hash=${APP_HASH}" >> local.properties
           echo "KEYSTORE_PASS=android" >> local.properties
           echo "ALIAS_NAME=aether" >> local.properties
@@ -74,6 +76,12 @@ jobs:
           echo "ndk.dir=$ANDROID_HOME/ndk/27.2.12479018" >> local.properties
 
       - name: Build Debug APK
+        env:
+          TELEGRAM_APP_ID: ${{ secrets.TELEGRAM_APP_ID }}
+          TELEGRAM_APP_HASH: ${{ secrets.TELEGRAM_APP_HASH }}
+          KEYSTORE_PASS: android
+          ALIAS_NAME: aether
+          ALIAS_PASS: android
         run: |
           ./gradlew assembleAfatDebug --stacktrace || ./gradlew assembleDebug --stacktrace
 

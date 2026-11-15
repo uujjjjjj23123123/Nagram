@@ -92,7 +92,7 @@ public class NekoXConfig {
         switch (customApi) {
             case -1:
             case 0:
-                return BuildConfig.APP_ID;
+                return BuildConfig.APP_ID != 0 ? BuildConfig.APP_ID : BuildVars.APP_ID;
             case 1:
                 return BuildVars.OFFICAL_APP_ID;
             case 2:
@@ -106,7 +106,7 @@ public class NekoXConfig {
         switch (customApi) {
             case -1:
             case 0:
-                return BuildConfig.APP_HASH;
+                return (BuildConfig.APP_HASH != null && !BuildConfig.APP_HASH.isEmpty()) ? BuildConfig.APP_HASH : BuildVars.APP_HASH;
             case 1:
                 return BuildVars.OFFICAL_APP_HASH;
             case 2:
