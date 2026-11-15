@@ -255,7 +255,7 @@ android {
             debuggable true
             jniDebuggable true
             multiDexEnabled true
-            signingConfig signingConfigs.release
+            signingConfig (keystorePwd != null && project.file("release.keystore").exists() ? signingConfigs.release : signingConfigs.debug)
         }
 
         release {

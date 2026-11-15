@@ -58,13 +58,17 @@ jobs:
       - name: Ensure gradlew is executable
         run: chmod +x gradlew || true
 
-      - name: Configure local.properties
+      - name: Configure Keystore and local.properties
         env:
           APP_ID: ${{ secrets.TELEGRAM_APP_ID }}
           APP_HASH: ${{ secrets.TELEGRAM_APP_HASH }}
         run: |
+          keytool -genkey -v -keystore TMessagesProj/release.keystore -alias aether -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=AetherTG, OU=Aether, O=Aether, L=Global, S=Global, C=US"
           echo "telegram.app.id=${APP_ID}" > local.properties
           echo "telegram.app.hash=${APP_HASH}" >> local.properties
+          echo "KEYSTORE_PASS=android" >> local.properties
+          echo "ALIAS_NAME=aether" >> local.properties
+          echo "ALIAS_PASS=android" >> local.properties
           echo "sdk.dir=$ANDROID_HOME" >> local.properties
           echo "ndk.dir=$ANDROID_HOME/ndk/27.2.12479018" >> local.properties
 
