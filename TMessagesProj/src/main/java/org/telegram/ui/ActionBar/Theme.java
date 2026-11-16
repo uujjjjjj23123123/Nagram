@@ -9193,7 +9193,7 @@ public class Theme {
         }
 
         // --- Action Bar & Visor Header ---
-        if (key == key_actionBarDefault || key == key_actionBarDefaultArchived || key == key_actionBarActionMode) {
+        if (key == key_actionBarDefault || key == key_actionBarDefaultArchived || key == key_actionBarActionModeDefault) {
             return 0xFF070D18; // Visor Panel
         }
         if (key == key_actionBarDefaultTitle || key == key_actionBarActionModeReactionText) {
@@ -9205,7 +9205,7 @@ public class Theme {
         if (key == key_actionBarDefaultIcon || key == key_actionBarActionModeReaction) {
             return 0xFF00F0FF;
         }
-        if (key == key_actionBarDefaultSelector || key == key_actionBarActionModeSelector) {
+        if (key == key_actionBarDefaultSelector || key == key_actionBarActionModeDefaultSelector) {
             return 0x2600F0FF;
         }
         if (key == key_actionBarDefaultSearch) {
@@ -9471,10 +9471,10 @@ public class Theme {
         if (key == key_switchTrackChecked) {
             return 0xFF00F0FF;
         }
-        if (key == key_switchThumb) {
+        if (key == key_switchTrackBlueThumb) {
             return 0xFF6C8FA8;
         }
-        if (key == key_switchThumbChecked) {
+        if (key == key_switchTrackBlueThumbChecked) {
             return 0xFF050B14;
         }
 
