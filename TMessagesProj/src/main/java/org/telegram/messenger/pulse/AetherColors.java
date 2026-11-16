@@ -42,6 +42,28 @@ public final class AetherColors {
     public static final int HUD_TEXT_SECONDARY  = 0xFF6C8FA8; // Telemetry diagnostic cyan-gray
     public static final int HUD_TEXT_DIM        = 0xFF3D566E; // Background stream micro-data
 
+    // --- Stark OS Chat Telemetry & Message Bubbles ---
+    public static final int CHAT_WALLPAPER_BG   = 0xFF050B14; // Stark void space background
+    public static final int CHAT_IN_BUBBLE      = 0xFF0D1829; // Deep armor titanium pod
+    public static final int CHAT_IN_BUBBLE_SEL  = 0xFF13233B;
+    public static final int CHAT_IN_TEXT        = 0xFFE2F4FF; // Holographic white-cyan
+    public static final int CHAT_IN_TIME        = 0xFF537B9D; // Tactical telemetry slate
+    public static final int CHAT_IN_REPLY_LINE  = 0xFF00F0FF; // Laser cyan accent
+
+    public static final int CHAT_OUT_BUBBLE     = 0xFF0A2B4C; // Stark armor blue plate
+    public static final int CHAT_OUT_GRADIENT_1 = 0xFF0D3761; // Apex energy
+    public static final int CHAT_OUT_GRADIENT_2 = 0xFF0A2B4C; // Mid plate
+    public static final int CHAT_OUT_GRADIENT_3 = 0xFF061A30; // Void shadow
+    public static final int CHAT_OUT_BUBBLE_SEL = 0xFF103E6C;
+    public static final int CHAT_OUT_TEXT       = 0xFFF2FBFF; // Diamond Stark white
+    public static final int CHAT_OUT_TIME       = 0xFF4DA6FF; // Arc depth blue
+    public static final int CHAT_OUT_CHECK_READ = 0xFF00F0FF; // Glowing Arc Cyan double check
+
+    public static final int CHAT_PANEL_BG       = 0xFF070D18; // Holographic visor console dock
+    public static final int CHAT_PANEL_TEXT     = 0xFFE2F4FF;
+    public static final int CHAT_PANEL_HINT     = 0xFF4E7394;
+    public static final int CHAT_ACTION_BAR     = 0xFF070D18; // Top HUD visor panel
+
     // --- Legacy Compatibility Aliases ---
     public static final int NIGHT_BG_DEEP       = STARK_VOID_BLACK;
     public static final int NIGHT_SURFACE       = STARK_TITANIUM_DARK;

@@ -9146,7 +9146,305 @@ public class Theme {
         return getColor(key);
     }
 
+    public static int getAetherStarkColor(int key) {
+        switch (key) {
+            // --- Backgrounds & Visor HUD Base ---
+            case key_windowBackgroundWhite:
+            case key_windowBackgroundGray:
+            case key_windowBackgroundGrayShadow:
+                return 0xFF050B14; // Stark Void Black
+            case key_windowBackgroundWhiteBlackText:
+                return 0xFFE2F4FF; // Crisp Holographic White-Cyan
+            case key_windowBackgroundWhiteGrayText:
+            case key_windowBackgroundWhiteGrayText2:
+            case key_windowBackgroundWhiteGrayText3:
+            case key_windowBackgroundWhiteGrayText4:
+            case key_windowBackgroundWhiteGrayText5:
+            case key_windowBackgroundWhiteGrayText6:
+            case key_windowBackgroundWhiteGrayText7:
+            case key_windowBackgroundWhiteGrayText8:
+                return 0xFF6C8FA8; // Tactical Slate
+            case key_windowBackgroundWhiteBlueText:
+            case key_windowBackgroundWhiteBlueText2:
+            case key_windowBackgroundWhiteBlueText3:
+            case key_windowBackgroundWhiteBlueHeader:
+            case key_windowBackgroundWhiteValueText:
+            case key_windowBackgroundWhiteLinkText:
+            case key_windowBackgroundWhiteBlueButton:
+                return 0xFF00F0FF; // Laser Cyan Core
+            case key_windowBackgroundWhiteBlueText4:
+            case key_windowBackgroundWhiteBlueText5:
+            case key_windowBackgroundWhiteBlueText6:
+            case key_windowBackgroundWhiteBlueText7:
+                return 0xFF4D9FFF; // Arc Depth Harmonic
+            case key_windowBackgroundWhiteInputField:
+                return 0xFF4E7394;
+            case key_windowBackgroundWhiteInputFieldActivated:
+                return 0xFF00F0FF;
+            case key_windowBackgroundUnchecked:
+                return 0xFF101826;
+            case key_windowBackgroundChecked:
+                return 0xFF00F0FF;
+            case key_windowBackgroundCheckText:
+                return 0xFF050B14;
+            case key_divider:
+                return 0x2600F0FF;
+            case key_listSelector:
+                return 0x2200F0FF;
+
+            // --- Action Bar & Visor Header ---
+            case key_actionBarDefault:
+            case key_actionBarDefaultArchived:
+            case key_actionBarActionMode:
+                return 0xFF070D18; // Visor Panel
+            case key_actionBarDefaultTitle:
+            case key_actionBarActionModeReactionText:
+                return 0xFF00F0FF; // Arc Cyan Title
+            case key_actionBarDefaultSubtitle:
+                return 0xFF4D9FFF;
+            case key_actionBarDefaultIcon:
+            case key_actionBarActionModeReaction:
+                return 0xFF00F0FF;
+            case key_actionBarDefaultSelector:
+            case key_actionBarActionModeSelector:
+                return 0x2600F0FF;
+            case key_actionBarDefaultSearch:
+                return 0xFFE2F4FF;
+            case key_actionBarDefaultSearchPlaceholder:
+                return 0xFF4E7394;
+
+            // --- Dialogs List / Feed ---
+            case key_chats_name:
+            case key_chats_nameArchived:
+            case key_chats_nameMessage:
+            case key_chats_nameMessageArchived:
+                return 0xFFEAF7FF;
+            case key_chats_message:
+            case key_chats_messageArchived:
+            case key_chats_attachMessage:
+            case key_chats_actionMessage:
+                return 0xFF6C8FA8;
+            case key_chats_date:
+            case key_chats_date_bold:
+                return 0xFF537B9D;
+            case key_chats_unreadCounter:
+                return 0xFFFFB700; // Repulsor Gold
+            case key_chats_unreadCounterMuted:
+                return 0xFF142436;
+            case key_chats_unreadCounterText:
+                return 0xFF050B14; // Stark Void contrast text
+            case key_chats_onlineCircle:
+                return 0xFF00F0FF; // Pulsing Arc Cyan
+            case key_chats_pinnedIcon:
+                return 0xFF00F0FF;
+            case key_chats_pinnedOverlay:
+                return 0x1800F0FF;
+            case key_chats_sentCheck:
+                return 0xFF4D9FFF;
+            case key_chats_sentReadCheck:
+                return 0xFF00F0FF;
+            case key_chats_sentClock:
+                return 0xFFFFB700;
+            case key_chats_actionBackground:
+                return 0xFF00F0FF; // FAB background
+            case key_chats_actionIcon:
+                return 0xFF050B14; // FAB pencil icon
+            case key_chats_actionPressedBackground:
+                return 0xFFFFB700; // FAB pressed glow
+            case key_chats_menuBackground:
+                return 0xFF070D18;
+            case key_chats_menuItemText:
+            case key_chats_menuItemCheck:
+                return 0xFFE2F4FF;
+            case key_chats_menuItemIcon:
+                return 0xFF00F0FF;
+            case key_chats_menuName:
+                return 0xFF00F0FF;
+            case key_chats_menuPhone:
+                return 0xFF4D9FFF;
+            case key_chats_menuTopBackground:
+            case key_chats_menuTopBackgroundCats:
+                return 0xFF0A1422;
+            case key_telegram_color_dialogsLogo:
+                return 0xFFFFFFFF; // Clean unmultiplied vector rendering
+
+            // --- Chat Message Bubbles ---
+            case key_chat_wallpaper:
+                return 0xFF050B14;
+            case key_chat_wallpaper_gradient_to1:
+                return 0xFF070F1B;
+            case key_chat_wallpaper_gradient_to2:
+                return 0xFF050B14;
+            case key_chat_wallpaper_gradient_to3:
+                return 0xFF03070E;
+            case key_chat_inBubble:
+                return 0xFF0D1829; // Deep armor titanium pod
+            case key_chat_inBubbleSelected:
+                return 0xFF13233B;
+            case key_chat_inBubbleShadow:
+                return 0x00000000;
+            case key_chat_messageTextIn:
+                return 0xFFE2F4FF; // Holographic white
+            case key_chat_messageLinkIn:
+                return 0xFF00F0FF; // Laser cyan links
+            case key_chat_inTimeText:
+            case key_chat_inTimeSelectedText:
+                return 0xFF537B9D;
+            case key_chat_inReplyLine:
+                return 0xFF00F0FF;
+            case key_chat_inReplyNameText:
+                return 0xFF00F0FF;
+            case key_chat_inReplyMessageText:
+                return 0xFF8BB5D6;
+            case key_chat_inAudioProgress:
+            case key_chat_inAudioSelectedProgress:
+            case key_chat_inAudioSeekbarFill:
+            case key_chat_inVoiceSeekbarFill:
+                return 0xFF00F0FF;
+            case key_chat_inAudioSeekbar:
+            case key_chat_inVoiceSeekbar:
+                return 0x3300F0FF;
+            case key_chat_inVoiceSeekbarSelected:
+                return 0xFFFFB700;
+            case key_chat_inFileProgress:
+            case key_chat_inFileProgressSelected:
+                return 0xFF00F0FF;
+            case key_chat_inFileNameText:
+                return 0xFF00F0FF;
+            case key_chat_inFileInfoText:
+                return 0xFF537B9D;
+            case key_chat_inFileBackground:
+                return 0xFF112136;
+
+            case key_chat_outBubble:
+                return 0xFF0A2B4C; // Stark armor blue plate
+            case key_chat_outBubbleGradient1:
+                return 0xFF0D3761;
+            case key_chat_outBubbleGradient2:
+                return 0xFF0A2B4C;
+            case key_chat_outBubbleGradient3:
+                return 0xFF061A30;
+            case key_chat_outBubbleSelected:
+                return 0xFF103E6C;
+            case key_chat_outBubbleShadow:
+                return 0x00000000;
+            case key_chat_messageTextOut:
+                return 0xFFF2FBFF; // Diamond Stark white
+            case key_chat_messageLinkOut:
+                return 0xFF00F0FF;
+            case key_chat_outTimeText:
+            case key_chat_outTimeSelectedText:
+                return 0xFF4DA6FF;
+            case key_chat_outSentCheck:
+            case key_chat_outSentCheckSelected:
+                return 0xFF4DA6FF;
+            case key_chat_outSentCheckRead:
+            case key_chat_outSentCheckReadSelected:
+                return 0xFF00F0FF; // Glowing Arc Cyan double check
+            case key_chat_outSentClock:
+            case key_chat_outSentClockSelected:
+                return 0xFFFFB700;
+            case key_chat_outReplyLine:
+            case key_chat_outReplyNameText:
+                return 0xFF00F0FF;
+            case key_chat_outReplyMessageText:
+                return 0xFF96CCF5;
+            case key_chat_outAudioProgress:
+            case key_chat_outAudioSeekbarFill:
+            case key_chat_outVoiceSeekbarFill:
+                return 0xFF00F0FF;
+            case key_chat_outAudioSeekbar:
+            case key_chat_outVoiceSeekbar:
+                return 0x4000F0FF;
+
+            // --- Service messages (date pills, unread bar) ---
+            case key_chat_serviceBackground:
+                return 0xCC070E1A;
+            case key_chat_serviceBackgroundSelected:
+                return 0xEE0A182C;
+            case key_chat_serviceText:
+            case key_chat_serviceIcon:
+                return 0xFF00F0FF;
+            case key_chat_serviceLink:
+                return 0xFF85FAFF;
+            case key_chat_unreadMessagesStartBackground:
+                return 0xFF0A1C30;
+            case key_chat_unreadMessagesStartText:
+            case key_chat_unreadMessagesStartArrowIcon:
+                return 0xFF00F0FF;
+
+            // --- Chat Input Console Dock ---
+            case key_chat_messagePanelBackground:
+            case key_chat_topPanelBackground:
+                return 0xFF070D18;
+            case key_chat_messagePanelShadow:
+                return 0x3300F0FF;
+            case key_chat_messagePanelText:
+                return 0xFFE2F4FF;
+            case key_chat_messagePanelHint:
+            case key_chat_fieldOverlayText:
+                return 0xFF4E7394;
+            case key_chat_messagePanelCursor:
+            case key_chat_messagePanelIcons:
+            case key_chat_messagePanelSend:
+            case key_chat_messagePanelVoiceLock:
+            case key_chat_topPanelLine:
+            case key_chat_topPanelTitle:
+            case key_chat_topPanelClose:
+            case key_chat_replyPanelIcons:
+            case key_chat_replyPanelLine:
+            case key_chat_replyPanelName:
+            case key_chat_replyPanelClose:
+                return 0xFF00F0FF;
+            case key_chat_messagePanelVoiceLockBackground:
+                return 0xFF0A1422;
+            case key_chat_emojiPanelBackground:
+            case key_chat_stickersHintPanel:
+                return 0xFF070D18;
+
+            // --- Interactive HUD Controls & Dialogs ---
+            case key_dialogBackground:
+            case key_dialogBackgroundGray:
+                return 0xFF070D18;
+            case key_dialogTextBlack:
+            case key_dialogTextLink:
+                return 0xFFE2F4FF;
+            case key_dialogTextGray:
+            case key_dialogTextGray2:
+            case key_dialogTextGray3:
+            case key_dialogTextGray4:
+                return 0xFF6C8FA8;
+            case key_dialogButton:
+                return 0xFF00F0FF;
+            case key_dialogButtonSelector:
+                return 0x2600F0FF;
+            case key_featuredStickers_addButton:
+                return 0xFF00F0FF;
+            case key_featuredStickers_addButton2:
+                return 0xFF4D9FFF;
+            case key_featuredStickers_addButtonPressed:
+                return 0xFFFFB700;
+            case key_featuredStickers_buttonText:
+                return 0xFF050B14;
+            case key_switchTrack:
+                return 0xFF142436;
+            case key_switchTrackChecked:
+                return 0xFF00F0FF;
+            case key_switchThumb:
+                return 0xFF6C8FA8;
+            case key_switchThumbChecked:
+                return 0xFF050B14;
+
+            default:
+                return 0; // Not intercepted, use engine fallback
+        }
+    }
+
     public static int getCurrentColor(int key) {
+        int stark = getAetherStarkColor(key);
+        if (stark != 0) {
+            return stark;
+        }
         return currentColors.get(key);
     }
 
@@ -9159,6 +9457,13 @@ public class Theme {
     }
 
     public static int getColor(int key, boolean[] isDefault, boolean ignoreAnimation) {
+        int stark = getAetherStarkColor(key);
+        if (stark != 0) {
+            if (isDefault != null) {
+                isDefault[0] = false;
+            }
+            return stark;
+        }
         if (!ignoreAnimation && animatingColors != null) {
             int index = animatingColors.indexOfKey(key);
             if (index >= 0) {

@@ -1165,15 +1165,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     private BaseFragment getClientNotActivatedFragment() {
-        try {
-            if (LoginActivity.loadCurrentState(false, currentAccount).getInt("currentViewNum", 0) != 0) {
-                return new LoginActivity();
-            }
-            return new IntroActivity();
-        } catch (Throwable e) {
-            FileLog.e(e);
-            return new LoginActivity();
-        }
+        return new LoginActivity();
     }
 
     public FireworksOverlay getFireworksOverlay() {
